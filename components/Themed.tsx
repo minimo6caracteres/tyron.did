@@ -17,6 +17,7 @@ import * as React from 'react';
 import * as ReactNative from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import Constants from 'expo-constants';
 
 // Background images
 export const welcomeBackground = require('../assets/images/welcomeBackground.jpg');
@@ -55,42 +56,49 @@ export function View(props: ViewProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
-  return <ReactNative.View style={[{ backgroundColor }, style]} {...otherProps} />;
+  return <ReactNative.SafeAreaView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
 
 export const styles = ReactNative.StyleSheet.create({
   image: {
     height: '100%',
     width: '100%',
+    marginTop: Constants.statusBarHeight,
   },
   welcomeImage: {
     height: ReactNative.Dimensions.get('screen').height,
   },
   container: {
+    flex: 1,
     height: ReactNative.Dimensions.get('screen').height,
     width: ReactNative.Dimensions.get('screen').width,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    //alignItems: 'center',
+    //justifyContent: 'space-around',
+    marginTop: Constants.statusBarHeight,
+  },
+  scrollView: {
+    marginHorizontal: 40,
   },
   tab: {
     marginBottom: 10,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   title: {
     fontSize: 30,
     fontFamily: 'Ubuntu_400Regular',
     lineHeight: 40,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 40,
-    color: '#021e55'
+    marginBottom: 10, 
+    color: '#fff'
   },
   separator: {
     marginVertical: 10,
     height: 1,
     width: '100%',
+  },
+  buttonContainer: {
+    flexDirection: 'row-reverse'
   },
   button: {
     margin: 10,
@@ -98,29 +106,35 @@ export const styles = ReactNative.StyleSheet.create({
     padding: 5,
     borderRadius: 5,
     borderBottomWidth: 0,
+    alignItems: 'center'
   },
   buttonText: {
-    fontSize: 30,
+    fontSize: 50,
     color: '#fff',
-    fontFamily: 'Ubuntu_400Regular'
+    fontFamily: 'Ubuntu_400Regular',
+    marginTop: 20,
+    marginBottom: 20,
   },
   inputText: {
-    fontSize: 25,
+    flex: 1,
+    fontSize: 50,
     color: '#7e9e81',
+    marginTop: 20,
     marginBottom: 20,
-    fontFamily: 'Ubuntu_400Regular'
+    fontFamily: 'Ubuntu_400Regular',
   },
   options: {
+    flex: 1,
     backgroundColor: '#7e9e81',
     fontSize: 20,
-    fontFamily: 'Ubuntu_400Regular',
+    flexDirection: "row"
   },
   radioText: {
     marginRight: 35,
-    fontSize: 20,
+    fontSize: 25,
     fontFamily: 'Ubuntu_400Regular',
     color: '#000',
-    fontWeight: '700'
+    fontWeight: '700',
   },
 	radioCircle: {
 		height: 25,
